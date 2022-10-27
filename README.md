@@ -1,5 +1,6 @@
 # This is how the website looks like :
 https://stellar-pie-6964b6.netlify.app
+
 ![Screenshot (5)](https://user-images.githubusercontent.com/72355377/198275266-411fd7c7-ad21-4c3d-bdea-20654b2a0584.png)
 
 # Getting Started with Create React App
