@@ -1,3 +1,7 @@
+# This is how the website looks like :
+
+![Screenshot (5)](https://user-images.githubusercontent.com/72355377/198275266-411fd7c7-ad21-4c3d-bdea-20654b2a0584.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
