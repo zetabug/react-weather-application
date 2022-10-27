@@ -1,6 +1,12 @@
 # HACKTOBERFEST-ACCEPTED
 ![Screenshot (8)](https://user-images.githubusercontent.com/72355377/198371433-8a530e8b-ccb0-4110-86d9-a34874708d66.png)
 
+# How to Contribute : 
+  1. Check for the issues present and ask them to be assigned to you, if you think you can solve them. Then apply for a Pull Request(PR), I will accept it        after I review it.
+     OR
+  2. Open a new issue, if you find some bug or have improvement ideas. Then apply for a Pull Request(PR), I will accept it after I review it.
+  3. Add your name in the CONTRIBUTING.md file. 
+
 # This is what the website looks like :
 https://stellar-pie-6964b6.netlify.app
 
