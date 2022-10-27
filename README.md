@@ -3,8 +3,10 @@
 
 # How to Contribute : 
   1. Check for the issues present and ask them to be assigned to you, if you think you can solve them. Then apply for a Pull Request(PR), I will accept it        after I review it.
+  
      OR
-  2. Open a new issue, if you find some bug or have improvement ideas. Then apply for a Pull Request(PR), I will accept it after I review it.
+     
+     Open a new issue, if you find some bug or have improvement ideas. Then apply for a Pull Request(PR), I will accept it after I review it.
   3. Add your name in the CONTRIBUTING.md file. 
 
 # This is what the website looks like :
