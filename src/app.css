@@ -1,47 +1,61 @@
-*,::after,::before{
-    padding: 0;margin: 0;
-    box-sizing: border-box;   
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-h1{
-    text-align: center;
-    margin-top: 3rem;
+h1 {
+  text-align: center;
+  margin-top: 3rem;
 }
-.container{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
-input{
-    outline: none;
-    border: 1px solid black;
-    width: 300px;
-    height: 30px;
-    padding: 4px;
-    color: #000;
+input {
+  outline: none;
+  border: 1px solid black;
+  width: 300px;
+  height: 30px;
+  padding: 4px;
+  color: #000;
 }
-.output-sec{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .8rem;
-    font-size: 1.5rem;
+.output-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.5rem;
 }
-.output-sec .location{
-    text-transform: uppercase;
+.output-sec .location {
+  text-transform: uppercase;
 }
-img{
-    height: 100px;
+img {
+  height: 100px;
 }
-.credit{
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
+.credit {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
 }
-p{
-    font-size: 2rem;
+p {
+  font-size: 2rem;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
