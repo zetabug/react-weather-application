@@ -13,6 +13,7 @@ function App() {
   }
 
   async function geoHandler() {
+    setSearch('');
     await navigator.geolocation.getCurrentPosition((position) => {
       const crd = position.coords;
       const latitude = crd.latitude;
@@ -31,7 +32,9 @@ function App() {
     };
 
     async function fetchdata() {
-      const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${location}`;
+      const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${
+        search || location
+      }`;
       const response = await fetch(url, options).then((response) =>
         response.json()
       );
@@ -40,28 +43,7 @@ function App() {
     }
 
     fetchdata();
-  }, [location]);
-
-  useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '0173291af0msh62b3ca25953f210p13d732jsn66b4d9f97708',
-        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-      },
-    };
-
-    async function fetchdata() {
-      const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${search}`;
-      const response = await fetch(url, options).then((response) =>
-        response.json()
-      );
-      setPlace(response.location);
-      setData(response.current);
-    }
-
-    fetchdata();
-  }, [search]);
+  }, [search, location]);
 
   return (
     <>
@@ -70,6 +52,7 @@ function App() {
         <div className="search-sec">
           <input
             type="text"
+            value={search}
             placeholder="Search by City..."
             onChange={handleSearch}
           />
