@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState, useEffect } from 'react';
+
+import Weather from './components/Weather';
+import LoadingIndicator from './UI/LoadingIndicator';
+
 import './app.css';
 
 function App() {
@@ -7,6 +11,7 @@ function App() {
   const [place, setPlace] = useState(null);
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleSearch(e) {
     setSearch(e.target.value);
@@ -14,6 +19,7 @@ function App() {
 
   async function geoHandler() {
     setSearch('');
+    setIsLoading(true);
     await navigator.geolocation.getCurrentPosition((position) => {
       const crd = position.coords;
       const latitude = crd.latitude;
@@ -40,10 +46,19 @@ function App() {
       );
       setPlace(response.location);
       setData(response.current);
+      setIsLoading(false);
     }
 
     fetchdata();
   }, [search, location]);
+
+  let display = () => {
+    if (data) {
+      return <Weather place={place} data={data} />;
+    } else if (!data) {
+      return <p>no data found 😬</p>;
+    }
+  };
 
   return (
     <>
@@ -65,20 +80,8 @@ function App() {
         </div>
         <br />
         <br />
-
-        {!data ? (
-          <p>no data found 😬</p>
-        ) : (
-          <div className="output-sec">
-            <div className="location">
-              {place.name}, {place.region}
-            </div>
-            <img src={data.condition.icon} alt="" />
-            <div className="sky-status">{data.condition.text}</div>
-            <div className="temp">Temperature : {data.temp_c}°C</div>
-            <div className="humidity">Humidity : {data.humidity}</div>
-          </div>
-        )}
+        {isLoading && <LoadingIndicator />}
+        {display()}
       </div>
       <span className="credit">Ranvir@zetabug/github</span>
     </>
