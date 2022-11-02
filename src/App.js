@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useCallback } from 'react';
 import { useState, useEffect } from 'react';
 
 import Weather from './components/Weather';
@@ -28,7 +28,7 @@ function App() {
     });
   }
 
-  useEffect(() => {
+  const fetchData = useCallback(async (search, location) => {
     const options = {
       method: 'GET',
       headers: {
@@ -36,29 +36,27 @@ function App() {
         'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
       },
     };
+    const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${
+      search || location
+    }`;
+    const response = await fetch(url, options);
+    const responseData = await response.json();
+    return responseData;
+  }, []);
 
-    async function fetchdata() {
-      const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${
-        search || location
-      }`;
-      const response = await fetch(url, options).then((response) =>
-        response.json()
-      );
-      setPlace(response.location);
-      setData(response.current);
+  useEffect(() => {
+    fetchData(search, location).then((responseData) => {
+      setPlace(responseData.location);
+      setData(responseData.current);
       setIsLoading(false);
-    }
+    });
+  }, [location, search, fetchData]);
 
-    fetchdata();
-  }, [search, location]);
-
-  let display = () => {
-    if (data) {
-      return <Weather place={place} data={data} />;
-    } else if (!data) {
-      return <p>no data found 😬</p>;
-    }
-  };
+  let display = data ? (
+    <Weather place={place} data={data} />
+  ) : (
+    <p>no data found 😬</p>
+  );
 
   return (
     <>
@@ -81,7 +79,7 @@ function App() {
         <br />
         <br />
         {isLoading && <LoadingIndicator />}
-        {display()}
+        {display}
       </div>
       <span className="credit">Ranvir@zetabug/github</span>
     </>
