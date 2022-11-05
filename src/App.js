@@ -55,28 +55,22 @@ function App() {
   let display = data ? (
     <Weather place={place} data={data} />
   ) : (
-    <p>no data found 😬</p>
+    <p>No results found.</p>
   );
 
   return (
     <>
       <div className="container">
-        <h1>WEATHER APPLICATION</h1>
+        <div className="heading">Weather Application</div>
         <div className="search-sec">
           <input
             type="text"
             value={search}
-            placeholder="Search by City..."
+            placeholder="Search"
             onChange={handleSearch}
           />
+          <button onClick={geoHandler}>Use Current Location</button>
         </div>
-        <div>
-          <p>or</p>
-        </div>
-        <div>
-          <button onClick={geoHandler}>Find me!</button>
-        </div>
-        <br />
         <br />
         {isLoading && <LoadingIndicator />}
         {display}
