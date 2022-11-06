@@ -1,15 +1,15 @@
-import './Weather.css';
+import "./Weather.css";
 
-const Weather = (props) => {
+const Weather = ({ place, data }) => {
   return (
     <div className="output-sec">
       <div className="location">
-        {props.place.name}, {props.place.region}
+        {place.name}, {place.region}
       </div>
-      <img src={props.data.condition.icon} alt="" />
-      <div className="sky-status">{props.data.condition.text}</div>
-      <div className="temp">Temperature : {props.data.temp_c}°C</div>
-      <div className="humidity">Humidity : {props.data.humidity}</div>
+      <img src={data.condition.icon} alt="" />
+      <div className="sky-status">{data.condition.text}</div>
+      <div className="temp">Temperature : {data.temp_c}°C</div>
+      <div className="humidity">Humidity : {data.humidity}</div>
     </div>
   );
 };

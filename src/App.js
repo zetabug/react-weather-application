@@ -1,24 +1,20 @@
-import React, { useCallback } from 'react';
-import { useState, useEffect } from 'react';
+import React, { useCallback } from "react";
+import { useState, useEffect } from "react";
 
-import Weather from './components/Weather';
-import LoadingIndicator from './UI/LoadingIndicator';
+import Weather from "./components/Weather";
+import LoadingIndicator from "./UI/LoadingIndicator";
 
-import './app.css';
+import "./app.css";
 
-function App() {
+const App = () => {
   const [data, setData] = useState(null);
   const [place, setPlace] = useState(null);
-  const [search, setSearch] = useState('');
-  const [location, setLocation] = useState('');
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleSearch(e) {
-    setSearch(e.target.value);
-  }
-
-  async function geoHandler() {
-    setSearch('');
+  const geoHandler = async () => {
+    setSearch("");
     setIsLoading(true);
     await navigator.geolocation.getCurrentPosition((position) => {
       const crd = position.coords;
@@ -26,14 +22,14 @@ function App() {
       const longitude = crd.longitude;
       setLocation(`${latitude},${longitude}`);
     });
-  }
+  };
 
   const fetchData = useCallback(async (search, location) => {
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'X-RapidAPI-Key': '0173291af0msh62b3ca25953f210p13d732jsn66b4d9f97708',
-        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+        "X-RapidAPI-Key": "0173291af0msh62b3ca25953f210p13d732jsn66b4d9f97708",
+        "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
       },
     };
     const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${
@@ -52,12 +48,6 @@ function App() {
     });
   }, [location, search, fetchData]);
 
-  let display = data ? (
-    <Weather place={place} data={data} />
-  ) : (
-    <p>no data found 😬</p>
-  );
-
   return (
     <>
       <div className="container">
@@ -67,7 +57,7 @@ function App() {
             type="text"
             value={search}
             placeholder="Search by City..."
-            onChange={handleSearch}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <div>
@@ -79,11 +69,11 @@ function App() {
         <br />
         <br />
         {isLoading && <LoadingIndicator />}
-        {display}
+        {data ? <Weather place={place} data={data} /> : <p>no data found 😬</p>}
       </div>
       <span className="credit">Ranvir@zetabug/github</span>
     </>
   );
-}
+};
 
 export default App;
