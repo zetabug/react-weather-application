@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react';
-import { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 import Weather from './components/Weather';
 import LoadingIndicator from './UI/LoadingIndicator';
@@ -14,17 +13,22 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleSearch(e) {
+    setLocation('');
     setSearch(e.target.value);
   }
 
   async function geoHandler() {
     setSearch('');
     setIsLoading(true);
+
     await navigator.geolocation.getCurrentPosition((position) => {
       const crd = position.coords;
       const latitude = crd.latitude;
       const longitude = crd.longitude;
+
       setLocation(`${latitude},${longitude}`);
+
+      setIsLoading(false);
     });
   }
 
@@ -45,12 +49,22 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetchData(search, location).then((responseData) => {
+    const delay = setTimeout(() => {
+      fetchData(search).then((responseData) => {
+        setPlace(responseData.location);
+        setData(responseData.current);
+        setIsLoading(false);
+      });
+    }, 500);
+    return () => clearTimeout(delay);
+  }, [search, fetchData]);
+
+  useEffect(() => {
+    fetchData(location).then((responseData) => {
       setPlace(responseData.location);
       setData(responseData.current);
-      setIsLoading(false);
     });
-  }, [location, search, fetchData]);
+  }, [location, fetchData]);
 
   let display = data ? (
     <Weather place={place} data={data} />
@@ -74,7 +88,9 @@ function App() {
           <p>or</p>
         </div>
         <div>
-          <button onClick={geoHandler}>Find me!</button>
+          <button onClick={geoHandler} disabled={isLoading}>
+            Find me!
+          </button>
         </div>
         <br />
         <br />
