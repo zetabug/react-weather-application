@@ -1,10 +1,35 @@
 .output-sec {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.5rem;
+  margin-top: 5px;
+  position: relative;
+  background: radial-gradient();
 }
-.output-sec .location {
-  text-transform: uppercase;
+
+.status-img {
+  width: 60px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.location {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+p:nth-child(1) {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  font-size: 16pt;
+}
+
+p:nth-child(2) {
+  font-size: 12pt;
 }
