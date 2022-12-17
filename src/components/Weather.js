@@ -1,4 +1,4 @@
-import './Weather.css';
+import "./Weather.css";
 
 const Weather = (props) => {
   return (
