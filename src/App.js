@@ -89,7 +89,9 @@ function App() {
           <p>or</p>
         </div>
         <div>
-          <button onClick={geoHandler}>Find me!</button>
+          <button onClick={geoHandler}>
+            <span>Find Me</span>
+          </button>
         </div>
         <br />
         <br />

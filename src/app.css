@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 h1 {
   text-align: center;
@@ -41,12 +41,40 @@ p {
 }
 
 button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #ffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
   cursor: pointer;
-  background-color: transparent;
-  border: 1px solid #8a2b06;
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+  margin: 5px;
+}
+
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5;
+}
+
+button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+button:hover span {
+  padding-right: 25px;
+}
+
+button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
